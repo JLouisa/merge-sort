@@ -1,3 +1,5 @@
+import { sortedList } from "./index.js";
+
 const mergeSortMain = (list) => {
   const beginIndex = 0;
   const endIndex = list.length - 1;
@@ -58,8 +60,9 @@ const mergeSortMain = (list) => {
     merge(array, startIndex, lastIndex, middleIndex);
     return array;
   }
-
-  return mergeSort(list, beginIndex, endIndex);
+  sortedList = mergeSort(list, beginIndex, endIndex);
+  console.log(sortedList);
+  return sortedList;
 };
 
 export default mergeSortMain;
