@@ -15,8 +15,9 @@ const mainProject = (() => {
   const getMinRangeEl = document.getElementById("minRange");
   const getMaxRangeEl = document.getElementById("maxRange");
   const getAmountEl = document.getElementById("amount");
-  const unsortedListEl = document.querySelector(".unsortedList");
+  const unSortedListEl = document.querySelector(".unSortedList");
   const sortedListEl = document.querySelector(".sortedList");
+  const divSortedListEl = document.querySelector(".divSortedList");
   const getOkBtn = document.getElementById("okBtn");
   const getCancelBtn = document.getElementById("cancelBtn");
   const sortBtn = document.getElementById("sortBtn");
@@ -26,7 +27,7 @@ const mainProject = (() => {
     event.preventDefault();
     calcInput();
     formEl.reset();
-    // unsortedListEl.style.visibility = "hidden";
+    // unSortedListEl.style.visibility = "hidden";
   });
   getCancelBtn.addEventListener("click", () => {
     formEl.reset();
@@ -48,7 +49,7 @@ const mainProject = (() => {
       maxNum = minNum + 1;
     }
     rangeAmount = getAmountEl.value;
-    calcUnSortedList(rangeAmount, minNum, maxNum);
+    calcunSortedList(rangeAmount, minNum, maxNum);
     render();
     renderBtn(1);
   }
@@ -70,7 +71,7 @@ const mainProject = (() => {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  function calcUnSortedList(amount, min, max) {
+  function calcunSortedList(amount, min, max) {
     let i = 0;
     while (i < amount) {
       let randomNumber = calcRandomNumber(min, max);
@@ -87,7 +88,7 @@ const mainProject = (() => {
 
   //! Renderer
   function render() {
-    unsortedListEl.textContent = createList;
+    unSortedListEl.textContent = createList;
   }
   function renderSorted() {
     sortedListEl.textContent = sortedList;
@@ -97,9 +98,12 @@ const mainProject = (() => {
       case 0: {
         sortBtn.removeAttribute("style");
         sortBtn.style.visibility = "hidden";
+        divSortedListEl.style.visibility = "hidden";
       }
       case 1: {
         sortBtn.style.visibility = "visible";
+        sortedListEl.style.visibility = "visible";
+        divSortedListEl.style.visibility = "visible";
       }
     }
   }

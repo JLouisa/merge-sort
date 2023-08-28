@@ -1,8 +1,166 @@
+:root {
+  font-family: monospace, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+#sortBtn,
+.divSortedList {
+  visibility: hidden;
+}
+
+.nav {
+  height: 10%;
+  border-bottom: 2px solid gray;
+}
+
 h1 {
   text-align: center;
-  color: crimson;
+  color: gray;
+}
+
+.main {
+  height: 80%;
+  display: grid;
+  grid-template: 1fr 5fr 1fr / 1fr 5fr 1fr;
+  justify-content: center;
+  align-items: center;
+  align-items: stretch;
+  min-height: 80vh;
+}
+
+.leftside,
+.rightside {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+.midside {
+  background-color: rgba(211, 211, 211, 0.065);
+
+  grid-area: 1/2/4/3;
+  align-self: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  box-shadow: 1px 1px 5px 4px solid rgb(0, 0, 0);
+  padding: 2em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.ranges,
+.divUnSortedList {
+  text-align: center;
+}
+
+.ranges > input {
+  margin-top: 1rem;
+  margin-left: 0.1em;
+  margin-right: 1em;
+}
+
+.formBtns,
+.divSortBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.midBot {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 #sortBtn {
-  visibility: hidden;
+  margin: 2rem;
+}
+
+.leftside {
+  grid-area: 1/1/4/2;
+}
+.rightside {
+  grid-area: 1/3/4/4;
+}
+
+.footer {
+  border-top: 2px solid gray;
+  height: 5em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.styleBtn1,
+.styleBtn2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  margin: 0.6em;
+  outline: none;
+  background-color: initial;
+  background-image: linear-gradient(-180deg, gray, gray);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+  height: 2em;
+  line-height: 2emx;
+  outline: 0;
+  padding: 1em 2em;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  transition: box-shadow 0.2s;
+}
+
+.styleBtn1:hover,
+.styleBtn2:hover {
+  background-color: lightgrey;
+  transform: scale(1.1);
+}
+
+.styleBtn1:active,
+.styleBtn2:active {
+  transform: scale(0.9);
+}
+
+.divAmount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divAmount > input {
+  margin-left: 1em;
+}
+
+.divUnSortedList,
+.divSortedList {
+  margin-bottom: 1em;
+}
+
+.unSortedList,
+.sortedList {
+  display: flex;
+  word-break: break-all;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 2rem;
 }
