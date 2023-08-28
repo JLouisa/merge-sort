@@ -1,4 +1,12 @@
+//! Create unsorted List Module
+
 //! DOM Caches
+
+//! Merge Function
+
+//! MergeSort Function
+
+//! Renderer
 
 //! Variables
 
