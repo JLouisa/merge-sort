@@ -1,98 +1,67 @@
-// const mergeSortMain = (() => {
-let list = [15, 8, 28, 5, 19, 33, 11, 46];
-const beginIndex = 0;
-const endIndex = list.length - 1;
+const mergeSortMain = (() => {
+  // let list = [15, 8, 28, 5, 19, 33, 11, 46];
+  let list = [84, 29, 53, 12, 67, 41, 96, 6, 75, 18, 90, 47];
+  //   let list = [56, 8, 37, 92, 14, 68, 23, 42, 79, 5, 61, 31, 73, 49, 18];
+  //   let list = [78, 32, 59, 4, 87, 21, 65, 93, 10, 55, 39, 84, 16, 72, 50, 98, 7, 26, 63, 91];
+  const beginIndex = 0;
+  const endIndex = list.length - 1;
 
-//! Merge Function
-function merge(array, startIndex, lastIndex, middleIndex) {
-  console.log(`Start Index in merge = ${startIndex}`);
-  console.log(`Last Index in merge = ${lastIndex}`);
-  console.log(`Middle Index in merge = ${middleIndex}`);
-  let copyList = [...array];
-  let firstHalfList = [];
-  let lastHalfList = [];
+  //! Merge Function
+  // Function takes the list, an Start index, an stop Index and the middle Index
+  // Will the array in to half and compare each half with each other
+  function merge(array, startIndex, lastIndex, middleIndex) {
+    const copyList = [...array];
+    const firstHalfList = [];
+    const lastHalfList = [];
+    // Creating the two halfs
+    for (let i = startIndex; i <= middleIndex; i += 1) {
+      firstHalfList.push(copyList[i]);
+    }
 
-  // console.log(`copy list: `);
-  // console.log(copyList);
+    for (let i = middleIndex + 1; i <= lastIndex; i += 1) {
+      lastHalfList.push(copyList[i]);
+    }
 
-  for (let i = startIndex; i <= middleIndex; i += 1) {
-    firstHalfList.push(copyList[i]);
-  }
-
-  for (let i = middleIndex + 1; i <= lastIndex; i += 1) {
-    lastHalfList.push(copyList[i]);
-  }
-  console.log(`First Half:`);
-  console.log(firstHalfList);
-  console.log(`Second Half list: `);
-  console.log(lastHalfList);
-  console.log(`copy list: `);
-  console.log(copyList);
-
-  let n = 0;
-  let m = 0;
-  let x = startIndex;
-  console.log(`Length for First: ${firstHalfList.length}`);
-  console.log(`Length for Last ${lastHalfList.length}`);
-
-  while (n < firstHalfList.length && m < lastHalfList.length) {
-    if (firstHalfList[n] < lastHalfList[m]) {
+    let n = 0;
+    let m = 0;
+    let x = startIndex;
+    // comparing which is smaller than swapping.
+    while (n < firstHalfList.length && m < lastHalfList.length) {
+      if (firstHalfList[n] < lastHalfList[m]) {
+        array[x] = firstHalfList[n];
+        n += 1;
+      } else {
+        array[x] = lastHalfList[m];
+        m += 1;
+      }
+      x += 1;
+    }
+    // Add left over to the array
+    while (n < firstHalfList.length) {
       array[x] = firstHalfList[n];
       n += 1;
-    } else {
+      x += 1;
+    }
+    while (m < lastHalfList.length) {
       array[x] = lastHalfList[m];
       m += 1;
+      x += 1;
     }
-    x += 1;
+    return array;
+  }
 
-    if (x > 20) {
-      console.log("Main loop Broken");
-      break;
+  //! MergeSort Function
+  function mergeSort(array, startIndex, lastIndex) {
+    if (startIndex === lastIndex) {
+      return;
     }
+    // Looking for the middle Index to replace the Start Index or Last Index
+    const middleIndex = Number(Math.floor((startIndex + lastIndex) / 2));
+    mergeSort(array, startIndex, middleIndex);
+    mergeSort(array, middleIndex + 1, lastIndex);
+    merge(array, startIndex, lastIndex, middleIndex);
+    return array;
   }
-  console.log(`Before:`);
-  console.log(copyList);
 
-  while (n < firstHalfList.length) {
-    array[x] = firstHalfList[n];
-    n += 1;
-    x += 1;
-    if (x > 20) {
-      console.log("n loop Broken");
-      break;
-    }
-  }
-  while (m < lastHalfList.length) {
-    array[x] = lastHalfList[m];
-    m += 1;
-    x += 1;
-    if (x > 20) {
-      console.log("m loop Broken");
-      break;
-    }
-  }
-  console.log(copyList);
-  console.log(`Array:`);
-  console.log(array);
-
-  return array;
-}
-
-//! MergeSort Function
-function mergeSort(array, startIndex, lastIndex) {
-  console.log(`Start Index in mergeSort = ${startIndex}`);
-  console.log(`Last Index in mergeSort = ${lastIndex}`);
-  console.log(array);
-  if (startIndex === lastIndex) {
-    return;
-  }
-  const middleIndex = Number(Math.floor((startIndex + lastIndex) / 2));
-  mergeSort(array, startIndex, middleIndex);
-  mergeSort(array, middleIndex + 1, lastIndex);
-  merge(array, startIndex, lastIndex, middleIndex);
-  // return array;
-}
-
-console.log(mergeSort(list, beginIndex, endIndex));
-console.log(list);
-// })();
+  console.log(mergeSort(list, beginIndex, endIndex));
+})();
