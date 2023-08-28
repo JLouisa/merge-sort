@@ -21,21 +21,22 @@
                     <div class="ranges">
                         <div class="ranges">Choose between which number you want to see</div>
                         <label for="minRange">Minimum</label>
-                        <input type="number" id="minRange" name="minRange">
+                        <input type="number" id="minRange" name="minRange" min="0">
                         <label for="maxRange">Maximum</label>
-                        <input type="number" id="maxRange" name="maxRange">
+                        <input type="number" id="maxRange" name="maxRange" min="1">
                     </div>
                     <label for="amount">How many Numbers?</label>
                     <input type="number" id="amount" name="amount" min="1" max="100">
                     <div>
                         <button type="submit" id="okBtn" class="styleBtn1">Ok</button>
-                        <button id="cancelBtn" class="styleBtn1">Cancel</button>
+                        <button id="cancelBtn" class="styleBtn2">Clear</button>
                     </div>
                 </form>
             </div>
             <div class="midBot mid">
                 <div>
                     <div>Here is your List</div>
+                    <button class="styleBtn1" id="sortBtn">Sort</button>
                     <div class="unsortedList"></div>
                 </div>
                 <div>

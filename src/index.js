@@ -4,11 +4,6 @@ export { sortedList };
 
 let sortedList = [];
 const mainProject = (() => {
-  //   let unsortedList = [15, 8, 28, 5, 19, 33, 11, 46];
-  // let unsortedList = [84, 29, 53, 12, 67, 41, 96, 6, 75, 18, 90, 47];
-  // let unsortedList = [56, 8, 37, 92, 14, 68, 23, 42, 79, 5, 61, 31, 73, 49, 18];
-  // let unsortedList = [78, 32, 59, 4, 87, 21, 65, 93, 10, 55, 39, 84, 16, 72, 50, 98, 7, 26, 63, 91];
-
   //! Variables
   let minNum;
   let maxNum;
@@ -24,26 +19,44 @@ const mainProject = (() => {
   const sortedListEl = document.querySelector(".sortedList");
   const getOkBtn = document.getElementById("okBtn");
   const getCancelBtn = document.getElementById("cancelBtn");
+  const sortBtn = document.getElementById("sortBtn");
 
   //!Listener
   getOkBtn.addEventListener("click", () => {
     event.preventDefault();
-    displayController();
+    calcInput();
     formEl.reset();
+    // unsortedListEl.style.visibility = "hidden";
   });
   getCancelBtn.addEventListener("click", () => {
     formEl.reset();
   });
+  sortBtn.addEventListener("click", () => {
+    formEl.reset();
+    displayController();
+    renderSorted();
+    sortBtn.style.visibility = "hidden";
+  });
 
   //! Display Controller
-  function displayController() {
+  function calcInput() {
+    createList = [];
+    sortedList = [];
     minNum = getMinRangeEl.value;
     maxNum = getMaxRangeEl.value;
+    if (maxNum < minNum) {
+      maxNum = minNum + 1;
+    }
     rangeAmount = getAmountEl.value;
     calcUnSortedList(rangeAmount, minNum, maxNum);
-    mergeSortMain(sortedList);
-    console.log(createList);
     render();
+    renderBtn(1);
+  }
+  function displayController() {
+    mergeSortMain(sortedList);
+    render();
+    renderSorted(1);
+    renderBtn(0);
   }
 
   //! Create unsorted List Module
@@ -52,13 +65,11 @@ const mainProject = (() => {
   //    if min isn't an integer) and no greater than max (or the next integer
   //    lower than max if max isn't an integer).
   //    Using Math.round() will give you a non-uniform distribution!
-
   function calcRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
   function calcUnSortedList(amount, min, max) {
     let i = 0;
     while (i < amount) {
@@ -68,12 +79,28 @@ const mainProject = (() => {
         i++;
       }
     }
+    //Had to do it this way because mergeSortMain was sorted the
+    //createList
+    createList = [];
     createList = [...sortedList];
   }
 
   //! Renderer
   function render() {
     unsortedListEl.textContent = createList;
+  }
+  function renderSorted() {
     sortedListEl.textContent = sortedList;
+  }
+  function renderBtn(visible) {
+    switch (visible) {
+      case 0: {
+        sortBtn.removeAttribute("style");
+        sortBtn.style.visibility = "hidden";
+      }
+      case 1: {
+        sortBtn.style.visibility = "visible";
+      }
+    }
   }
 })();
