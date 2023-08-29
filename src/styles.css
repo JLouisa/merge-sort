@@ -61,7 +61,8 @@ form {
 }
 
 .ranges,
-.divUnSortedList {
+.divUnSortedList,
+.divSortedList {
   text-align: center;
 }
 
